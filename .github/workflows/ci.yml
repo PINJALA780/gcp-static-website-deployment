@@ -1,0 +1,38 @@
+name: Static Website CI
+
+on:
+  push:
+    branches:
+      - main
+      - feature/github-actions-ci
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate-website:
+    name: Validate Website
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Check required files
+        run: |
+          test -f index.html
+          test -f style.css
+          test -f script.js
+          echo "All required files are present."
+
+      - name: Validate HTML structure
+        run: |
+          grep -qi '<html' index.html
+          grep -qi '</html>' index.html
+          echo "HTML validation passed."
+
+      - name: Validate CSS and JavaScript
+        run: |
+          test -s style.css
+          test -s script.js
+          echo "CSS and JavaScript validation passed."
