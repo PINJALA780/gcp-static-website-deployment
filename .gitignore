@@ -1,0 +1,18 @@
+# Environment files
+.env
+.env.*
+
+# SSH and private keys
+*.pem
+*.key
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+
+# Logs
+*.log
